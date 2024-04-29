@@ -51,6 +51,20 @@ function App() {
         <ArtistPic />
       </div>
 
+      <h2>Recommended Playlist</h2>
+      <div className="recommended-playlist">
+        <AlbumCard />
+        <AlbumCard />
+        <AlbumCard />
+        <AlbumCard />
+        <AlbumCard />
+        <AlbumCard />
+        <AlbumCard />
+        <AlbumCard />
+        <AlbumCard />
+        <AlbumCard />
+      </div>
+
     </div>
   );
 }

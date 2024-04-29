@@ -21,8 +21,8 @@
 }
 
 .minutes p {
-  background-color: red;
-  font-size: 25px;
+  font-size: 70px;
+  font-family: 'Rampart One', sans-serif;
 }
 
 .genre h3 {
@@ -30,8 +30,8 @@
 }
 
 .genre p {
-  background-color: red;
-  font-size: 25px;
+  font-size: 70px;
+  font-family: 'Rampart One', sans-serif;
 }
 
 .scrollable-row {
@@ -51,4 +51,10 @@
   flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 10px;
+}
+
+.recommended-playlist {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust the minimum and maximum width as needed */
+  grid-gap: 50px; /* Adjust the gap between cards */
 }
