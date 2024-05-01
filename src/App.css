@@ -1,3 +1,8 @@
+* {
+  background-color: black;
+  color: white;
+}
+
 .App {
   width: 80%;
   height: auto;

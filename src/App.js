@@ -1,11 +1,14 @@
 import AlbumCard from './components/AlbumCard';
 import ArtistPic from './components/ArtistPic';
-import SongBar from './components/SongBar';
 import SongCard from  './components/SongCard';
-import './App.css';
+import './App.css';  
 
-function App() {
+
+
+
+function App() { 
   return (
+
     <div className="App">
       <h1>Welcome user!</h1>
       
@@ -65,8 +68,10 @@ function App() {
         <AlbumCard />
       </div>
 
-    </div>
-  );
+    </div> 
+  ); 
 }
 
-export default App;
+export default App; 
+
+
