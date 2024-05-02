@@ -3,14 +3,39 @@ import ArtistPic from './components/ArtistPic';
 import SongCard from  './components/SongCard';
 import './App.css';  
 
+//import './api.js';
+//import { authorizeUser } from './api.js'; 
 
+//Get profile data
+async function getProfile(accessToken) {
+  const response = await fetch('https://api.spotify.com/v1/me', {
+    headers: {
+      Authorization: 'Bearer ' + accessToken
+    }
+  });
+
+  const data = await response.json();
+  return data;
+}
+
+//use access token from local storage to log the data
+const accessToken = localStorage.getItem('access_token');
+try {
+  const profileData = await getProfile(accessToken);
+  console.log(profileData); // Output the profile data to the console
+  // Do something else with the profile data, like updating component state
+} catch (error) {
+  console.error('Error fetching user profile:', error.message);
+}
 
 
 function App() { 
+  
   return (
 
     <div className="App">
       <h1>Welcome user!</h1>
+      <button>Authorize</button>
       
       <div className="minutes-genre">
         <div className="minutes">
@@ -74,4 +99,4 @@ function App() {
 
 export default App; 
 
-
+ 
