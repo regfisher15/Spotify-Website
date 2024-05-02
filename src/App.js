@@ -3,7 +3,7 @@ import ArtistPic from './components/ArtistPic';
 import SongCard from  './components/SongCard';
 import './App.css';  
 
-//import './api.js';
+import './api.js';
 //import { authorizeUser } from './api.js'; 
 
 //Get profile data
@@ -35,7 +35,6 @@ function App() {
 
     <div className="App">
       <h1>Welcome user!</h1>
-      <button>Authorize</button>
       
       <div className="minutes-genre">
         <div className="minutes">

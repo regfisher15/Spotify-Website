@@ -31,7 +31,7 @@ const scope = 'user-read-private user-read-email';
 const authUrl = new URL("https://accounts.spotify.com/authorize");
 
 
-(async () => {
+const authorizeUser = async () => {
   const codeChallenge = await getCodeChallenge();
 
   window.localStorage.setItem('code_verifier', codeVerifier);
@@ -47,7 +47,13 @@ const authUrl = new URL("https://accounts.spotify.com/authorize");
 
   authUrl.search = new URLSearchParams(params).toString();
   window.location.href = authUrl.toString();
-})(); 
+};
+
+const accessToken = localStorage.getItem('access_token');
+
+if (!accessToken) {
+  authorizeUser(); // Call the function, don't invoke it immediately
+}
 
 /*const authUrl = new URL("https://accounts.spotify.com/authorize");
 
