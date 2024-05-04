@@ -6,8 +6,6 @@ import SongCard from  './components/SongCard';
 //import SongBar from './components/SongBar';
 //import AlbumDetails from './components/AlbumDetails';
 import './App.css';   
-
-import './api.js';
 import { getProfile } from './api.js';
 
 //get profile data
@@ -32,6 +30,8 @@ function App() {
   
   return (
     <div className="App">
+      <button id="logout">Logout</button>
+
       <h1>Welcome {profileData.display_name}!</h1> 
       
       <div className="minutes-genre">

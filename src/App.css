@@ -3,6 +3,22 @@
   color: white;
 }
 
+#logout {
+  background-color: black;
+  border-color: white;
+  position: absolute;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-left: 1200px;
+  padding: 10px 10px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+#logout:hover {
+  background-color: rgb(6, 194, 6);
+}
+
 .App {
   width: 80%;
   height: auto;
