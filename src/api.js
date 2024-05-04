@@ -33,7 +33,7 @@ const scope = 'user-read-private user-read-email';
 const authUrl = new URL("https://accounts.spotify.com/authorize");
 
 
-const authorizeUser = async () => {
+export const authorizeUser = async () => {
   const codeChallenge = await getCodeChallenge();
 
   window.localStorage.setItem('code_verifier', codeVerifier);
@@ -53,7 +53,7 @@ const authorizeUser = async () => {
 
 const accessToken = localStorage.getItem('access_token');
 
-if (!accessToken) {
+if (accessToken === "undefined") {
   authorizeUser(); // Call the function, don't invoke it immediately
 } 
 
@@ -121,40 +121,9 @@ const handleError = async (error) => {
   }
 }; */
 
-// Function to decode the JWT token
-function parseJwt(token) {
-  const base64Url = token.split('.')[1];
-  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-  const jsonPayload = decodeURIComponent(atob(base64).split('').map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)).join(''));
-  return JSON.parse(jsonPayload);
-}
-
-// Check if the access token is expired
-function isTokenExpired(accessToken) {
-  if (!accessToken) {
-    return true; // Token is considered expired if it's not available
-  }
-  const decodedToken = parseJwt(accessToken);
-  const expiryTime = decodedToken.exp * 1000; // Convert to milliseconds
-  const currentTime = Date.now();
-  return expiryTime <= currentTime;
-}
 
 
-/*async function fetchData() {
-  const accessToken = localStorage.getItem('access_token');
-  const profileData = await getProfile(accessToken);
-  console.log(profileData); // Output the profile data to the console
-  // Do something else with the data, like updating component state
-} */
-
-
-
-
-
-
-
-//GET DATA **************************************************************
+//GET PROFILE DATA **************************************************************
 
 //Get profile data
 export async function getProfile(accessToken) {
@@ -171,10 +140,34 @@ export async function getProfile(accessToken) {
 //use access token from local storage to log the data
 try {
   const profileData = await getProfile(accessToken);
-  console.log(profileData.display_name); // Output the profile data to the console
+  console.log(profileData); // Output the profile data to the console
   // Do something else with the profile data, like updating component state
 } catch (error) {
   console.error('Error fetching user profile:', error.message);
 } 
 
 
+/* GET USER"S TOP 10 SONGS *************************************************** */
+if (accessToken) {
+  fetch('https://api.spotify.com/v1/me/top/tracks?time_range=long_term&limit=10', {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + accessToken
+    }
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Failed to fetch top tracks');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Top tracks:', data.items);
+    // Do something with the top tracks data
+  })
+  .catch(error => {
+    console.error('Error fetching top tracks:', error);
+  });
+} else {
+  console.error('Access token not found');
+}

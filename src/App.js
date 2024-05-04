@@ -3,6 +3,8 @@
 import AlbumCard from './components/AlbumCard';
 import ArtistPic from './components/ArtistPic';
 import SongCard from  './components/SongCard';
+//import SongBar from './components/SongBar';
+//import AlbumDetails from './components/AlbumDetails';
 import './App.css';   
 
 import './api.js';
@@ -13,11 +15,24 @@ const accessToken = localStorage.getItem('access_token');
 const profileData = await getProfile(accessToken);
 
 function App() { 
+
+  /*return (
+    <div className="App">
+      <AlbumDetails />
+      <SongBar />
+      <SongBar />
+      <SongBar />
+      <SongBar />
+      <SongBar />
+      <SongBar />
+      <SongBar />
+      <SongBar />
+    </div>
+  );*/
   
   return (
     <div className="App">
-      <div id="displayName"></div>
-      <h1>Welcome {profileData.display_name}!</h1>
+      <h1>Welcome {profileData.display_name}!</h1> 
       
       <div className="minutes-genre">
         <div className="minutes">

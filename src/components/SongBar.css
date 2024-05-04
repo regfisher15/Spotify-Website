@@ -21,7 +21,7 @@
 
 .song-title {
     font-weight: bold;
-    width: 300px;
+    width: 100%;
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
@@ -45,5 +45,7 @@
 }
 
 .time {
-
+    display: flex;
+    justify-content: flex-end;
 }
+
