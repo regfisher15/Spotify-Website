@@ -120,12 +120,22 @@ const getRefreshToken = async () => {
   localStorage.setItem('refresh_token', response.refresh_token);
 }
 
+async function refreshAccessTokenIfNeeded() {
+  const accessToken = localStorage.getItem('access_token');
+
+  // Check if access token is expired
+  if (!accessToken) {
+    console.log('Access token expired: Refreshing token...');
+    await getRefreshToken();
+  }
+}
 
 
 //GET PROFILE DATA **************************************************************
 
 //function to get profile profile data
 export async function getProfile(accessToken) {
+
   const response = await fetch('https://api.spotify.com/v1/me', {
     headers: {
       Authorization: 'Bearer ' + accessToken
@@ -139,11 +149,12 @@ export async function getProfile(accessToken) {
     //refresh the token
     await getRefreshToken();
   }
-
+  
   // Proceed with parsing the response if it's not a 401 error
   const data = await response.json();
   return data;
-}
+} 
+
 
 //log the profile data
 const profileData = await getProfile(accessToken);

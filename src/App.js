@@ -6,11 +6,16 @@ import SongCard from  './components/SongCard';
 //import SongBar from './components/SongBar';
 //import AlbumDetails from './components/AlbumDetails';
 import './App.css';   
-import { getProfile } from './api.js';
+import { authorizeUser, getProfile } from './api.js';
+
 
 //get profile data
 const accessToken = localStorage.getItem('access_token');
 const profileData = await getProfile(accessToken);
+
+const handleLogout = () => {
+  authorizeUser();
+}
 
 function App() { 
 
@@ -30,7 +35,7 @@ function App() {
   
   return (
     <div className="App">
-      <button id="logout">Logout</button>
+      <button id="logout" onClick={handleLogout}>Logout</button>
 
       <h1>Welcome {profileData.display_name}!</h1> 
       
