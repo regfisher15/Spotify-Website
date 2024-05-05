@@ -1,9 +1,15 @@
 * {
-  background-color: black;
-  color: white;
+  margin: 0; /* Remove margin */
+  padding: 0;
+}
+
+.entire-background {
+   background: linear-gradient(to right, #ff6347, #ffd700); 
+   height: 20%; 
 }
 
 #logout {
+  color: white;
   background-color: black;
   border-color: white;
   position: absolute;
@@ -16,12 +22,13 @@
 }
 
 #logout:hover {
-  background-color: rgb(6, 194, 6);
+  background-color: rgb(255, 106, 0);
 }
 
 .App {
   width: 80%;
-  height: auto;
+  height: 100%;
+  /*margin-left: auto;*/
   margin: 0 auto;
 }
 
@@ -76,6 +83,6 @@
 
 .recommended-playlist {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust the minimum and maximum width as needed */
-  grid-gap: 50px; /* Adjust the gap between cards */
+  grid-template-columns: repeat(5, minmax(0, 1fr)); /* Five columns */
+  grid-gap: 20px; /* Adjust the gap between cards */
 }

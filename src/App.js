@@ -13,13 +13,14 @@ import { authorizeUser, getProfile } from './api.js';
 const accessToken = localStorage.getItem('access_token');
 const profileData = await getProfile(accessToken);
 
+//do authorization step again if they logout
 const handleLogout = () => {
   authorizeUser();
 }
 
 function App() { 
-
-  /*return (
+/*
+  return (
     <div className="App">
       <AlbumDetails />
       <SongBar />
@@ -31,71 +32,75 @@ function App() {
       <SongBar />
       <SongBar />
     </div>
-  );*/
+  );
+  */
   
   return (
-    <div className="App">
-      <button id="logout" onClick={handleLogout}>Logout</button>
+    <div className="entire-background">
+        <div className="App">
+          <button id="logout" onClick={handleLogout}>Logout</button>
 
-      <h1>Welcome {profileData.display_name}!</h1> 
-      
-      <div className="minutes-genre">
-        <div className="minutes">
-          <h3>Minutes Listened</h3>
-          <p>100,000</p>
-        </div>
-        <div className="genre">
-          <h3>Top Genre</h3>
-          <p>Hip Hop</p>
-        </div>
-      
-      </div>
+          <h1>Welcome {profileData.display_name}!</h1> 
+          
+          <div className="minutes-genre">
+            <div className="minutes">
+              <h3>Minutes Listened</h3>
+              <p>100,000</p>
+            </div>
+            <div className="genre">
+              <h3>Top Genre</h3>
+              <p>Hip Hop</p>
+            </div>
+          
+          </div>
 
-      <h2>Your Top Songs</h2>
+          <h2>Your Top Songs</h2>
 
-      <div className="top-songs">
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-        <SongCard />
-      </div>
+          <div className="top-songs">
+            <SongCard />
+            <SongCard />
+            <SongCard />
+            <SongCard />
+            <SongCard />
+            <SongCard />
+            <SongCard />
+            <SongCard />
+            <SongCard />
+            <SongCard />
+          </div>
 
-      <h2>Your Top Artists</h2>
-      <div className="scrollable-row">
-        <ArtistPic />
-        <ArtistPic />
-        <ArtistPic />
-        <ArtistPic />
-        <ArtistPic />
-        <ArtistPic />
-        <ArtistPic />
-        <ArtistPic />
-        <ArtistPic />
-        <ArtistPic />
-        <ArtistPic />
-      </div>
+          <h2>Your Top Artists</h2>
+          <div className="scrollable-row">
+            <ArtistPic />
+            <ArtistPic />
+            <ArtistPic />
+            <ArtistPic />
+            <ArtistPic />
+            <ArtistPic />
+            <ArtistPic />
+            <ArtistPic />
+            <ArtistPic />
+            <ArtistPic />
+            <ArtistPic />
+          </div>
 
-      <h2>Recommended Playlist</h2>
-      <div className="recommended-playlist">
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-        <AlbumCard />
-      </div>
 
-    </div> 
+          <h2>Recommended Playlist</h2>
+          <div className="recommended-playlist">
+            <AlbumCard />
+            <AlbumCard />
+            <AlbumCard />
+            <AlbumCard />
+            <AlbumCard />
+            <AlbumCard />
+            <AlbumCard />
+            <AlbumCard />
+            <AlbumCard />
+            <AlbumCard />
+          </div> 
+
+        </div> 
+    </div>
   ); 
 }
 

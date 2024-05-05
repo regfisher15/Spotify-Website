@@ -4,12 +4,17 @@
 }
 
 .bar {
+    background-color: rgb(1, 55, 1);
     display: flex;
     align-items: center;
     height: 60px;
     width: 100%;
     border-top: 2px solid black; /* Add border to the top */
-    border-bottom: 2px solid black;
+    border-radius: 5px;
+}
+
+.bar * {
+    background-color: transparent !important;
 }
 
 .bar img {
@@ -17,6 +22,7 @@
     height: 50px;
     border-radius: 10px;
     margin-right: 10px;
+    margin-left: 10px;
 }
 
 .song-title {
@@ -47,5 +53,6 @@
 .time {
     display: flex;
     justify-content: flex-end;
+    margin-right: 10px;
 }
 

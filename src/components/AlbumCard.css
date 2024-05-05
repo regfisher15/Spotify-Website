@@ -6,24 +6,23 @@
 .card {
     display: flex;
     flex-direction: column;
-    background-color: red;
     width: 200px;
     height: 200px;
     border-radius: 10px;
+    padding-bottom: 50px;
 }
 
-.name {
+.names {
     color: black;
     font-size: 30px;
     text-align: left;
-    border-radius: 0 0 10px 10px;
 }
 
-.name h2 {
+.names h2 {
     font-size: 20px;
 }
 
-.name p {
+.names p {
     font-size: 15px;
     margin-bottom: 10px;
 }

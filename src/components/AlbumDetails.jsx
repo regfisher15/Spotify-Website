@@ -18,7 +18,7 @@ const AlbumDetails = () => {
                 </div>
                 <div className="songs-length">
                     <div className="songs">10 songs</div>
-                    <p>*</p>
+                    <p>,</p>
                     <div className="lenth">Length</div>
                 </div>
             </div>
