@@ -1,0 +1,35 @@
+* {
+    margin: 0; /* Remove margin */
+    padding: 0;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    padding-bottom: 50px;
+}
+
+.names {
+    color: black;
+    font-size: 30px;
+    text-align: left;
+}
+
+.names h2 {
+    font-size: 20px;
+}
+
+.names p {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}

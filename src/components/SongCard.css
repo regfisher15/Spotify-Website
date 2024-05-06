@@ -1,0 +1,43 @@
+* {
+    margin: 0; 
+    padding: 0;
+}
+
+.song-card {
+    display: flex;
+    width: 500px;
+    margin-bottom: 10px;
+}
+
+.song-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 5px;
+    border-radius: 15px;
+}
+
+.song-content {
+    width: 400px;
+}
+
+.song-content h1{
+    font-size: 20px;
+    margin-bottom: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.song-content h2 {
+    color: black;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.song-content p {
+    font-size: 15px;
+}
+
+
+
