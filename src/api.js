@@ -31,7 +31,7 @@ const getCodeChallenge = async () => {
 const clientId = 'c584f1fbe1fe46e3ab8c424ca34b2504';
 const redirectUri = 'http://localhost:3000';
 
-const scope = 'user-read-private user-read-email';
+const scope = 'user-read-private user-read-email user-top-read';
 const authUrl = new URL("https://accounts.spotify.com/authorize");
 
 
@@ -120,7 +120,7 @@ const getRefreshToken = async () => {
   localStorage.setItem('refresh_token', response.refresh_token);
 }
 
-async function refreshAccessTokenIfNeeded() {
+/*async function refreshAccessTokenIfNeeded() {
   const accessToken = localStorage.getItem('access_token');
 
   // Check if access token is expired
@@ -128,10 +128,10 @@ async function refreshAccessTokenIfNeeded() {
     console.log('Access token expired: Refreshing token...');
     await getRefreshToken();
   }
-}
+}*/
 
 
-//GET PROFILE DATA **************************************************************
+//GET PROFILE DATA ***************************************************************************************
 
 //function to get profile profile data
 export async function getProfile(accessToken) {
@@ -161,8 +161,8 @@ const profileData = await getProfile(accessToken);
 console.log(profileData); // Output the profile data to the console
 
 
-/* GET USER"S TOP 10 SONGS *************************************************** 
-async function getTopTracks(accessToken, timeRange = 'medium_term', limit = 10) {
+/* GET USER"S TOP 10 SONGS ********************************************************************************* */
+export async function getTopTracks(accessToken, timeRange = 'medium_term', limit = 10) {
   const url = `https://api.spotify.com/v1/me/top/tracks?time_range=${timeRange}&limit=${limit}`;
   const response = await fetch(url, {
     method: 'GET',
@@ -174,9 +174,13 @@ async function getTopTracks(accessToken, timeRange = 'medium_term', limit = 10) 
   return data.items; // Return an array of top tracks
 }
 
+/*
 // Example usage:
 const topTracks = await getTopTracks(accessToken);
-console.log("Checking if this works");
-console.log(topTracks); */
+//console.log(topTracks); 
 
+topTracks.forEach(track => {
+  console.log(track.name);
+});
+*/
 

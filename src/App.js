@@ -1,4 +1,4 @@
-//import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import AlbumCard from './components/AlbumCard';
 import ArtistPic from './components/ArtistPic';
@@ -6,7 +6,7 @@ import SongCard from  './components/SongCard';
 //import SongBar from './components/SongBar';
 //import AlbumDetails from './components/AlbumDetails';
 import './App.css';   
-import { authorizeUser, getProfile } from './api.js';
+import { authorizeUser, getProfile, getTopTracks } from './api.js';
 
 
 //get profile data
@@ -36,7 +36,18 @@ function App() {
   );
   */
 
-  //<h1>Welcome {profileData.display_name}!</h1> 
+  //get top ten tracks for user
+  const [topTracks, setTopTracks] = useState([]);
+
+  useEffect(() => {
+    const fetchTopTracks = async () => {
+      const tracks = await getTopTracks(accessToken);
+      setTopTracks(tracks);
+      console.log(tracks);
+    };
+
+    fetchTopTracks();
+  }, [accessToken]);
   
   return (
     <div className="entire-background">
@@ -60,16 +71,9 @@ function App() {
           <h2>Your Top Songs</h2>
 
           <div className="top-songs">
-            <SongCard />
-            <SongCard />
-            <SongCard />
-            <SongCard />
-            <SongCard />
-            <SongCard />
-            <SongCard />
-            <SongCard />
-            <SongCard />
-            <SongCard />
+            {topTracks.map((track, index) => (
+              <SongCard key={index} track={track} index={index + 1} />
+            ))}
           </div>
 
           <h2>Your Top Artists</h2>

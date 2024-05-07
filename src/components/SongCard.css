@@ -17,12 +17,18 @@
     border-radius: 15px;
 }
 
+.song-card h3 {
+    font-size: 50px;
+    margin-right: 5px;
+}
+
 .song-content {
     width: 400px;
 }
 
 .song-content h1{
-    font-size: 20px;
+    text-align: left !important;
+    font-size: 30px;
     margin-bottom: 0px;
     overflow: hidden;
     white-space: nowrap;

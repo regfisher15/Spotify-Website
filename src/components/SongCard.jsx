@@ -1,14 +1,19 @@
 import React from 'react';
 import './SongCard.css';
 
-const SongCard = () => {
+const SongCard = ({track, index}) => {
+    // Format the index with leading zeroes
+    const formattedIndex = String(index).padStart(2, '0');
+
+    //<h2>{track.album.name}</h2>
+
     return (
         <div className='song-card'>
-            <img src="/images/documentary.jpg" alt='Song'/>
+            <h3>{formattedIndex}</h3>
+            <img src={track.album.images[1].url} alt='Song'/>
             <div className='song-content'>
-                <h1>Spotify Is Amazing And I Really Love It again</h1>
-                <h2>I love Spotify!</h2>
-                <p>200 Plays</p>
+                <h1>{track.name}</h1>
+                <p>{track.artists[0].name}</p>
                 <p>4:44</p>
             </div>
         </div>
