@@ -15,6 +15,7 @@ const profileData = await getProfile(accessToken);
 
 //do authorization step again if they logout
 const handleLogout = () => {
+  //localStorage.clear();
   authorizeUser();
 }
 
@@ -34,6 +35,8 @@ function App() {
     </div>
   );
   */
+
+  //<h1>Welcome {profileData.display_name}!</h1> 
   
   return (
     <div className="entire-background">
