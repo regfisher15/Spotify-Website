@@ -162,7 +162,7 @@ console.log(profileData); // Output the profile data to the console
 
 
 /* GET USER"S TOP 10 SONGS ********************************************************************************* */
-export async function getTopTracks(accessToken, timeRange = 'medium_term', limit = 10) {
+export async function getTopTracks(accessToken, timeRange = 'medium_term', limit = 50) {
   const url = `https://api.spotify.com/v1/me/top/tracks?time_range=${timeRange}&limit=${limit}`;
   const response = await fetch(url, {
     method: 'GET',
@@ -174,13 +174,59 @@ export async function getTopTracks(accessToken, timeRange = 'medium_term', limit
   return data.items; // Return an array of top tracks
 }
 
-/*
+/* GET USER'S TOP ARTISTS ************************************************************************************/
+export async function getTopArtists(accessToken, timeRange = 'medium_term', limit = 20) {
+  const url = `https://api.spotify.com/v1/me/top/artists?time_range=${timeRange}&limit=${limit}`;
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + accessToken
+    }
+  });
+  const data = await response.json();
+  return data.items; // Return an array of top artists
+}
+
+
+/*GET TOP GENRE ********************************************************************************************** */
+export const getTopGenre = async (accessToken) => {
+  const topArtists = await getTopArtists(accessToken);
+  
+  // Count occurrences of each genre
+  const genreCounts = {};
+  topArtists.forEach(artist => {
+    artist.genres.forEach(genre => {
+      genreCounts[genre] = (genreCounts[genre] || 0) + 1;
+    });
+  });
+
+  // Find the genre with the highest count
+  let topGenre = null;
+  let maxCount = 0;
+  Object.entries(genreCounts).forEach(([genre, count]) => {
+    if (count > maxCount) {
+      topGenre = genre;
+      maxCount = count;
+    }
+  });
+
+  return topGenre;
+};
+
+
+
+async function getRecommendedTracks(accessToken) {
+  const url = 'https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical,country&seed_tracks=0c6xIDDpzE81m2q797ordA&limit=10';
+  const response = await fetch(url, {
+    method: 'GET',
+    headers: {
+      'Authorization': 'Bearer ' + accessToken
+    }
+  });
+  const data = await response.json();
+  return data.tracks; // Return an array of recommended tracks
+}
+
 // Example usage:
-const topTracks = await getTopTracks(accessToken);
-//console.log(topTracks); 
-
-topTracks.forEach(track => {
-  console.log(track.name);
-});
-*/
-
+const recommendedTracks = await getRecommendedTracks(accessToken);
+console.log(recommendedTracks);

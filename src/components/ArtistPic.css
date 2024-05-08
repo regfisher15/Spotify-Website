@@ -8,7 +8,7 @@
 }
 
 .pic {
-    background-color: blue;
+    background-color: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;

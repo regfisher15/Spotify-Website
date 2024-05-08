@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
 
-import AlbumCard from './components/AlbumCard';
+//import AlbumCard from './components/AlbumCard';
 import ArtistPic from './components/ArtistPic';
 import SongCard from  './components/SongCard';
 //import SongBar from './components/SongBar';
 //import AlbumDetails from './components/AlbumDetails';
 import './App.css';   
-import { authorizeUser, getProfile, getTopTracks } from './api.js';
+import { authorizeUser, getProfile, getTopTracks, getTopArtists, getTopGenre } from './api.js';
 
 
 //get profile data
 const accessToken = localStorage.getItem('access_token');
 const profileData = await getProfile(accessToken);
+
+//get top genre
+const topGenre = await getTopGenre(accessToken);
 
 //do authorization step again if they logout
 const handleLogout = () => {
@@ -36,7 +39,7 @@ function App() {
   );
   */
 
-  //get top ten tracks for user
+  //get top tracks for user
   const [topTracks, setTopTracks] = useState([]);
 
   useEffect(() => {
@@ -47,7 +50,21 @@ function App() {
     };
 
     fetchTopTracks();
-  }, [accessToken]);
+  }, []);
+
+
+  //get top artists for user
+  const [topArtists, setTopArtists] = useState([]);
+
+  useEffect(() => {
+    const fetchTopArtists = async () => {
+      const artists = await getTopArtists(accessToken);
+      setTopArtists(artists);
+      console.log(artists);
+    }
+
+    fetchTopArtists();
+  }, []);
   
   return (
     <div className="entire-background">
@@ -56,14 +73,14 @@ function App() {
 
           <h1>Welcome {profileData.display_name}!</h1> 
           
-          <div className="minutes-genre">
-            <div className="minutes">
-              <h3>Minutes Listened</h3>
-              <p>100,000</p>
+          <div className="artist-genre">
+            <div className="top-artist">
+              <h3>Top Artist</h3>
+              <p>{topArtists[0]?.name}</p>
             </div>
             <div className="genre">
               <h3>Top Genre</h3>
-              <p>Hip Hop</p>
+              <p>{topGenre}</p>
             </div>
           
           </div>
@@ -78,32 +95,15 @@ function App() {
 
           <h2>Your Top Artists</h2>
           <div className="scrollable-row">
-            <ArtistPic />
-            <ArtistPic />
-            <ArtistPic />
-            <ArtistPic />
-            <ArtistPic />
-            <ArtistPic />
-            <ArtistPic />
-            <ArtistPic />
-            <ArtistPic />
-            <ArtistPic />
-            <ArtistPic />
+            {topArtists.map((artist, index) => (
+              <ArtistPic key={index} artist={artist}/>
+            ))}  
           </div>
 
 
-          <h2>Recommended Playlist</h2>
-          <div className="recommended-playlist">
-            <AlbumCard />
-            <AlbumCard />
-            <AlbumCard />
-            <AlbumCard />
-            <AlbumCard />
-            <AlbumCard />
-            <AlbumCard />
-            <AlbumCard />
-            <AlbumCard />
-            <AlbumCard />
+          <h2>Recommended Tracks</h2>
+          <div className="recommended-tracks">
+            
           </div> 
 
         </div> 

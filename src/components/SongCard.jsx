@@ -5,8 +5,6 @@ const SongCard = ({track, index}) => {
     // Format the index with leading zeroes
     const formattedIndex = String(index).padStart(2, '0');
 
-    //<h2>{track.album.name}</h2>
-
     return (
         <div className='song-card'>
             <h3>{formattedIndex}</h3>

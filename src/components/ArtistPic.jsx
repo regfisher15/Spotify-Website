@@ -1,12 +1,12 @@
 import React from 'react';
 import './ArtistPic.css';
 
-const ArtistPic = () => {
+const ArtistPic = ({artist}) => {
     return (
         <div className='artist'>
             <div className='pic'>
-                <img src="/images/documentary.jpg" alt='Artist'/> 
-                <p>Artist Name</p>
+                <img src={artist.images[0].url} alt='Artist'/> 
+                <p>{artist.name}</p>
             </div>
         </div>
     );
