@@ -1,0 +1,46 @@
+* {
+    margin: 0; 
+    padding: 0;
+}
+
+.track-preview {
+    display: flex;
+    width: 350px;
+    border-top: 1px solid white;
+    margin-bottom: 10px;
+}
+
+.track-preview img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.track-artist {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    width: 270px;
+}
+
+#track-name {
+    font-style: bold;
+    font-size: 17px;
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflowing content */
+    text-overflow: ellipsis;
+}
+
+#artist {
+    color: black;
+    font-size: 14px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+

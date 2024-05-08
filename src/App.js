@@ -5,6 +5,7 @@ import ArtistPic from './components/ArtistPic';
 import SongCard from  './components/SongCard';
 //import SongBar from './components/SongBar';
 //import AlbumDetails from './components/AlbumDetails';
+import TrackPreview from './components/TrackPreview';
 import './App.css';   
 import { authorizeUser, getProfile, getTopTracks, getTopArtists, getTopGenre } from './api.js';
 
@@ -103,7 +104,21 @@ function App() {
 
           <h2>Recommended Tracks</h2>
           <div className="recommended-tracks">
-            
+            <TrackPreview />
+            <TrackPreview />
+            <TrackPreview />
+            <TrackPreview />
+            <TrackPreview />
+            <TrackPreview />
+            <TrackPreview />
+            <TrackPreview />
+            <TrackPreview />
+            <TrackPreview />
+            <TrackPreview />
+            <TrackPreview />
+            <TrackPreview />
+            <TrackPreview />
+            <TrackPreview />
           </div> 
 
         </div> 
