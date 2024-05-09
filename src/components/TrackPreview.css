@@ -4,6 +4,7 @@
 }
 
 .track-preview {
+    position: relative;
     display: flex;
     width: 350px;
     border-top: 1px solid white;
@@ -11,12 +12,52 @@
 }
 
 .track-preview img {
+    display: block;
     width: 70px;
     height: 70px;
     object-fit: cover;
     border-radius: 10px;
     margin-right: 5px;
     margin-top: 5px;
+}
+
+.track-preview::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+    margin-right: 5px;
+    margin-top: 5px;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.2s ease; /* Add a transition effect for smooth hover */
+    z-index: 2;
+}
+
+.track-preview:hover::after {
+    width: 70px;
+    height: 70px;
+    opacity: 1; /* Show the overlay on hover */
+    border-radius: 10px;
+}
+
+.play-icon {
+    position: absolute;
+    margin-left: 30px;
+    margin-top: 30px;
+    transition: scale 0.2s ease;
+    opacity: 0;
+    z-index: 3;
+}
+
+.track-preview:hover .play-icon {
+    opacity: 1; /* Show the icon when the .track-preview is hovered over */
+}
+
+.play-icon:hover {
+    scale: 1.2;
 }
 
 .track-artist {

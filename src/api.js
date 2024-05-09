@@ -227,6 +227,3 @@ export async function getRecommendedTracks(accessToken) {
   return data.tracks; // Return an array of recommended tracks
 }
 
-// Example usage:
-const recommendedTracks = await getRecommendedTracks(accessToken);
-//console.log(recommendedTracks);
