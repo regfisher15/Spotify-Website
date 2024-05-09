@@ -214,9 +214,9 @@ export const getTopGenre = async (accessToken) => {
 };
 
 
-
-async function getRecommendedTracks(accessToken) {
-  const url = 'https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical,country&seed_tracks=0c6xIDDpzE81m2q797ordA&limit=10';
+/*GET RECOMMENDED TRACKS **************************************************/
+export async function getRecommendedTracks(accessToken) {
+  const url = 'https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical,country&seed_tracks=0c6xIDDpzE81m2q797ordA&limit=20';
   const response = await fetch(url, {
     method: 'GET',
     headers: {
@@ -229,4 +229,4 @@ async function getRecommendedTracks(accessToken) {
 
 // Example usage:
 const recommendedTracks = await getRecommendedTracks(accessToken);
-console.log(recommendedTracks);
+//console.log(recommendedTracks);

@@ -1,13 +1,13 @@
 import React from 'react';
 import './TrackPreview.css';
 
-const TrackPreview = () => {
+const TrackPreview = ({recTrack}) => {
     return (
         <div className='track-preview'>
-            <img src="images/documentary.jpg" alt='Song'/>
+            <img src={recTrack.album.images[0].url} alt='Song'/>
             <div className='track-artist'>
-                <p id="track-name">Track Name</p>
-                <p id="artist">artist</p>
+                <p id="track-name">{recTrack.name}</p>
+                <p id="artist">{recTrack.artists[0].name}</p>
             </div>
         </div>
     );

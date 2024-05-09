@@ -7,7 +7,7 @@ import SongCard from  './components/SongCard';
 //import AlbumDetails from './components/AlbumDetails';
 import TrackPreview from './components/TrackPreview';
 import './App.css';   
-import { authorizeUser, getProfile, getTopTracks, getTopArtists, getTopGenre } from './api.js';
+import { authorizeUser, getProfile, getTopTracks, getTopArtists, getTopGenre, getRecommendedTracks } from './api.js';
 
 
 //get profile data
@@ -47,7 +47,7 @@ function App() {
     const fetchTopTracks = async () => {
       const tracks = await getTopTracks(accessToken);
       setTopTracks(tracks);
-      console.log(tracks);
+      //console.log(tracks);
     };
 
     fetchTopTracks();
@@ -61,10 +61,23 @@ function App() {
     const fetchTopArtists = async () => {
       const artists = await getTopArtists(accessToken);
       setTopArtists(artists);
-      console.log(artists);
+      //console.log(artists);
     }
 
     fetchTopArtists();
+  }, []);
+
+  //get recommended tracks for user
+  const [recommendedTracks, setRecommendedTracks] = useState([]);
+
+  useEffect(() => {
+    const fetchRecommendedTracks = async () => {
+      const recTracks = await getRecommendedTracks(accessToken);
+      setRecommendedTracks(recTracks);
+      console.log(recTracks);
+    }
+
+    fetchRecommendedTracks();
   }, []);
   
   return (
@@ -104,21 +117,9 @@ function App() {
 
           <h2>Recommended Tracks</h2>
           <div className="recommended-tracks">
-            <TrackPreview />
-            <TrackPreview />
-            <TrackPreview />
-            <TrackPreview />
-            <TrackPreview />
-            <TrackPreview />
-            <TrackPreview />
-            <TrackPreview />
-            <TrackPreview />
-            <TrackPreview />
-            <TrackPreview />
-            <TrackPreview />
-            <TrackPreview />
-            <TrackPreview />
-            <TrackPreview />
+            {recommendedTracks.map((recTrack, index) => (
+              <TrackPreview key={index} recTrack={recTrack}/>
+            ))}
           </div> 
 
         </div> 

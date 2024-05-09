@@ -8,7 +8,7 @@ const SongCard = ({track, index}) => {
     return (
         <div className='song-card'>
             <h3>{formattedIndex}</h3>
-            <img src={track.album.images[1].url} alt='Song'/>
+            <img src={track.album.images[0].url} alt='Song'/>
             <div className='song-content'>
                 <h1>{track.name}</h1>
                 <p>{track.artists[0].name}</p>
