@@ -47,7 +47,7 @@ function App() {
     const fetchTopTracks = async () => {
       const tracks = await getTopTracks(accessToken);
       setTopTracks(tracks);
-      //console.log(tracks);
+      console.log(tracks);
     };
 
     fetchTopTracks();
