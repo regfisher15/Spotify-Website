@@ -118,7 +118,7 @@ function App() {
           <h2>Recommended Tracks</h2>
           <div className="recommended-tracks">
             {recommendedTracks.map((recTrack, index) => (
-              <TrackPreview key={index} recTrack={recTrack}/>
+              <TrackPreview key={index} recTrack={recTrack} trackId={index}/>
             ))}
           </div> 
 

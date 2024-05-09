@@ -60,6 +60,10 @@
     scale: 1.2;
 }
 
+.sound {
+    z-index: 3;
+}
+
 .track-artist {
     display: flex;
     flex-direction: column;
