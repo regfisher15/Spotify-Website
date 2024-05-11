@@ -39,6 +39,12 @@
   margin-bottom: 10px;
 }
 
+.App h2 {
+  color: orange;
+  font-size: 35px;
+  margin-bottom: 5px;
+}
+
 .artist-genre {
   display: flex;
   justify-content: space-between;
@@ -94,6 +100,9 @@
   grid-auto-flow: column; 
 }
 
+.recommended-tracks::-webkit-scrollbar {
+  display: none;
+}
 
 
 /*.recommended-playlist {
