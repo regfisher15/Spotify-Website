@@ -5,7 +5,7 @@ import ArtistPic from '../components/ArtistPic';
 import SongCard from  '../components/SongCard';
 import TrackPreview from '../components/TrackPreview';
 
-import '../Home.css';   
+import './Home.css';
 import { authorizeUser, getProfile, getTopTracks, getTopArtists, getTopGenre, getRecommendedTracks } from '../api.js';
 
 

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import TrackPreview from '../components/TrackPreview';
 import AlbumCard from '../components/AlbumCard';
+import ArtistPic from '../components/ArtistPic';
 import './ArtistDetails.css';
 
 const accessToken = localStorage.getItem('access_token');
@@ -54,45 +55,50 @@ async function fetchArtistAlbums(id) {
     return artistAlbums;
 }
 
+//fetch related artists
+async function fetchRelatedArtists(id) {
+    const response = await fetch(`https://api.spotify.com/v1/artists/${id}/related-artists`, {
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch related artists. Status: ${response.status}`);
+    }
+
+    const relatedArtistsData = await response.json();
+    return relatedArtistsData.artists;
+}
+
 const ArtistDetails = () => {
     const { artistId } = useParams();
     const [theArtist, setTheArtist] = useState({});
+    const [theArtistTopTracks, setTheArtistTopTracks] = useState({});
+    const [theArtistAlbums, setTheArtistAlbums] = useState([]);
+    const [relatedArtists, setRelatedArtists] = useState([]);
 
     useEffect(() => {
-        console.log(artistId);
-        const fetchArtist = async () => {
+        //console.log(artistId);
+        const fetchData = async () => {
+
+            //get artist details
             try {
                 const artistDetails = await fetchArtistDetails(artistId);
                 setTheArtist(artistDetails);
             } catch (error) {
                 console.error('Error fetching artist details:', error.message);
             }
-        };
 
-        fetchArtist();
-    }, [artistId]);
-
-    const [theArtistTopTracks, setTheArtistTopTracks] = useState({});
-
-    useEffect(() => {
-        console.log(artistId);
-        const fetchArtistTracks = async () => {
+            //get artist tracks
             try {
                 const artistTracks = await fetchArtistTopTracks(artistId);
                 setTheArtistTopTracks(artistTracks);
             } catch (error) {
                 console.error('Error fetching artist top tracks:', error.message);
             }
-        };
 
-        fetchArtistTracks();
-    }, [artistId]);
-
-    const [theArtistAlbums, setTheArtistAlbums] = useState([]);
-
-    useEffect(() => {
-
-        const fetchAlbums = async () => {
+            //get artist albums
             try {
                 const artistAlbums = await fetchArtistAlbums(artistId);
                 const albumsOnly = artistAlbums.items.filter(album => album.album_type === 'album');
@@ -100,10 +106,22 @@ const ArtistDetails = () => {
             } catch (error) {
                 console.error('Error fetching artist albums:', error.message);
             }
+
+            try {
+                const related = await fetchRelatedArtists(artistId);
+                setRelatedArtists(related);
+            } catch (error) {
+                console.error('Error fetching related artists:', error.message);
+            }
         };
 
-        fetchAlbums();
+        fetchData();
+
+        window.scrollTo(0, 0);
+        
     }, [artistId]);
+
+    console.log(relatedArtists);
 
     return (
         <div className="entire-background">
@@ -135,8 +153,15 @@ const ArtistDetails = () => {
                     )}
                 </div>
 
+                <div className="related-title">
+                    <h2>Related Artists</h2>
+                </div>
                 <div className='related-artists'>
-
+                    {relatedArtists.map((artist, index) => (
+                        <Link key={index} to={`/artist/${artist.id}`}>
+                            <ArtistPic artist={artist} />
+                        </Link>
+                    ))}  
                 </div>
             </div>
         </div>            

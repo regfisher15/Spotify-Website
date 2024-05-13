@@ -21,6 +21,17 @@
 .names h2 {
     color: white;
     font-size: 20px;
+    
+    /* Limit to 4 lines of text and show ellipsis */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    /* Ensure that the text wraps within the container */
+    white-space: normal;
+
+    /* Hide overflow content */
+    overflow: hidden;
 }
 
 .names p {

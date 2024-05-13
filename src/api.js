@@ -1,4 +1,4 @@
-import './Home.css'; 
+import './index.css';  
 
 //security code for OAuth 2.0 authorization flow
 const generateRandomString = (length) => {
@@ -175,7 +175,7 @@ export async function getTopTracks(accessToken, timeRange = 'medium_term', limit
 }
 
 /* GET USER'S TOP ARTISTS ************************************************************************************/
-export async function getTopArtists(accessToken, timeRange = 'medium_term', limit = 20) {
+export async function getTopArtists(accessToken, timeRange = 'long_term', limit = 20) {
   const url = `https://api.spotify.com/v1/me/top/artists?time_range=${timeRange}&limit=${limit}`;
   const response = await fetch(url, {
     method: 'GET',
