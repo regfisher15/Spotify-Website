@@ -22,7 +22,7 @@ function App() {
   */
 
   return (
-    <div className="entire-background">
+    <div>
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />

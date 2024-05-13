@@ -30,9 +30,10 @@
     height: 70px;
     margin-right: 5px;
     margin-top: 5px;
-    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity as needed */
+    background-color: rgba(0, 0, 0, 0.5);
     opacity: 0; /* Initially hidden */
-    transition: opacity 0.2s ease; /* Add a transition effect for smooth hover */
+    border-radius: 10px;
+    transition: opacity 0.2s ease; 
     z-index: 2;
 }
 

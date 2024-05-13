@@ -62,6 +62,8 @@ function Home() {
 
     fetchRecommendedTracks();
   }, []);
+
+  console.log(recommendedTracks);
   
   return (
     <div className="entire-background">
