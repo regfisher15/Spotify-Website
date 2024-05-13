@@ -38,6 +38,22 @@ async function fetchArtistTopTracks(id) {
     return artistTopTracks;
 }
 
+//function to get artist top tracks based on artist id
+async function fetchArtistAlbums(id) {
+    const response = await fetch(`https://api.spotify.com/v1/artists/${id}/albums`, {
+        headers: {
+            'Authorization': `Bearer ${accessToken}`
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch artist albums. Status: ${response.status}`);
+    }
+
+    const artistAlbums = await response.json();
+    return artistAlbums;
+}
+
 const ArtistDetails = () => {
     const { artistId } = useParams();
     const [theArtist, setTheArtist] = useState({});
@@ -72,7 +88,22 @@ const ArtistDetails = () => {
         fetchArtistTracks();
     }, [artistId]);
 
-    console.log(theArtistTopTracks);
+    const [theArtistAlbums, setTheArtistAlbums] = useState([]);
+
+    useEffect(() => {
+
+        const fetchAlbums = async () => {
+            try {
+                const artistAlbums = await fetchArtistAlbums(artistId);
+                const albumsOnly = artistAlbums.items.filter(album => album.album_type === 'album');
+                setTheArtistAlbums(albumsOnly);
+            } catch (error) {
+                console.error('Error fetching artist albums:', error.message);
+            }
+        };
+
+        fetchAlbums();
+    }, [artistId]);
 
     return (
         <div className="entire-background">
@@ -97,12 +128,11 @@ const ArtistDetails = () => {
 
                 <h2>Albums</h2>
                 <div className='top-albums'>
-                    <AlbumCard />
-                    <AlbumCard />
-                    <AlbumCard />
-                    <AlbumCard />
-                    <AlbumCard />
-                    <AlbumCard />
+                    {theArtistAlbums && (
+                        theArtistAlbums.map((album, index) => (
+                            <AlbumCard key={index} album={album} trackId={index}/>
+                        ))
+                    )}
                 </div>
 
                 <div className='related-artists'>
