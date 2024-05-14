@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+a:link {
+    text-decoration: none;
+}
+
 .entire-background {
     background-color: gray;
     padding-bottom: 10px;

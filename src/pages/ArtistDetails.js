@@ -103,10 +103,12 @@ const ArtistDetails = () => {
                 const artistAlbums = await fetchArtistAlbums(artistId);
                 const albumsOnly = artistAlbums.items.filter(album => album.album_type === 'album');
                 setTheArtistAlbums(albumsOnly);
+                console.log(albumsOnly);
             } catch (error) {
                 console.error('Error fetching artist albums:', error.message);
             }
 
+            //get related artists
             try {
                 const related = await fetchRelatedArtists(artistId);
                 setRelatedArtists(related);
@@ -118,10 +120,8 @@ const ArtistDetails = () => {
         fetchData();
 
         window.scrollTo(0, 0);
-        
-    }, [artistId]);
 
-    console.log(relatedArtists);
+    }, [artistId]);
 
     return (
         <div className="entire-background">
@@ -148,7 +148,9 @@ const ArtistDetails = () => {
                 <div className='top-albums'>
                     {theArtistAlbums && (
                         theArtistAlbums.map((album, index) => (
-                            <AlbumCard key={index} album={album} trackId={index}/>
+                            <Link key={index} to={`/album/${album.id}`}>
+                                <AlbumCard key={index} album={album} trackId={index}/>
+                            </Link>
                         ))
                     )}
                 </div>
