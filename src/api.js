@@ -162,7 +162,7 @@ console.log(profileData); // Output the profile data to the console
 
 
 /* GET USER"S TOP 10 SONGS ********************************************************************************* */
-export async function getTopTracks(accessToken, timeRange = 'medium_term', limit = 50) {
+export async function getTopTracks(accessToken, timeRange, limit = 50) {
   const url = `https://api.spotify.com/v1/me/top/tracks?time_range=${timeRange}&limit=${limit}`;
   const response = await fetch(url, {
     method: 'GET',
@@ -215,8 +215,8 @@ export const getTopGenre = async (accessToken) => {
 
 
 /*GET RECOMMENDED TRACKS **************************************************/
-export async function getRecommendedTracks(accessToken) {
-  const url = 'https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical,country&seed_tracks=0c6xIDDpzE81m2q797ordA&limit=20';
+export async function getRecommendedTracks(accessToken, topGenre) {
+  const url = `https://api.spotify.com/v1/recommendations?seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=${encodeURIComponent(topGenre)}&seed_tracks=0c6xIDDpzE81m2q797ordA&limit=20`;
   const response = await fetch(url, {
     method: 'GET',
     headers: {

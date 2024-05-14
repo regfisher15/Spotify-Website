@@ -1,6 +1,13 @@
 import React from 'react';
 import './SongCard.css';
 
+const timeDuration = (durationInMilliseconds) => {
+    const durationInSeconds = Math.floor(durationInMilliseconds / 1000);
+    const minutes = Math.floor(durationInSeconds / 60);
+    const seconds = durationInSeconds % 60;
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`; // Ensure seconds are always two digits
+};
+
 const SongCard = ({track, index}) => {
     // Format the index with leading zeroes
     const formattedIndex = String(index).padStart(2, '0');
@@ -12,7 +19,7 @@ const SongCard = ({track, index}) => {
             <div className='song-content'>
                 <h1>{track.name}</h1>
                 <p>{track.artists[0].name}</p>
-                <p>4:44</p>
+                <p>{timeDuration(track.duration_ms)}</p>
             </div>
         </div>
     );

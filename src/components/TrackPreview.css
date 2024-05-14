@@ -44,6 +44,7 @@
     border-radius: 10px;
 }
 
+
 .play-icon {
     position: absolute;
     margin-left: 30px;
@@ -59,6 +60,7 @@
 
 .play-icon:hover {
     scale: 1.2;
+    cursor: pointer;
 }
 
 .sound {
@@ -86,6 +88,10 @@
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+#artist:hover {
+    text-decoration: underline;
 }
 
 

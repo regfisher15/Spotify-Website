@@ -26,10 +26,25 @@
   background-color: green;
 }
 
+.time-period {
+  display: flex;
+  justify-content: center;
+}
+
+.time-period button {
+  color: black;
+  width: 100px;
+  height: 25px;
+}
+
+button.active {
+  background-color: #007bff; /* Example color for active button */
+  color: white; /* Example color for active button text */
+}
+
 .App {
   width: 80%;
   height: 100%;
-  /*margin-left: auto;*/
   margin: 0 auto;
 }
 
@@ -101,10 +116,3 @@
 .recommended-tracks::-webkit-scrollbar {
   display: none;
 }
-
-
-/*.recommended-playlist {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr)); 
-  grid-gap: 20px; /* Adjust the gap between cards 
-}*/

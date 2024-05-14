@@ -6,6 +6,7 @@ import SongCard from  '../components/SongCard';
 import TrackPreview from '../components/TrackPreview';
 
 import './Home.css';
+import '../api.js';
 import { authorizeUser, getProfile, getTopTracks, getTopArtists, getTopGenre, getRecommendedTracks } from '../api.js';
 
 
@@ -22,19 +23,30 @@ const handleLogout = () => {
   authorizeUser();
 }
 
+
+
 function Home() { 
+
+  const [time_period, setTimePeriod] = useState("medium_term");
+
+  const handleTimePeriodChange = (newTimePeriod) => {
+      setTimePeriod(newTimePeriod);
+  };
+
+  console.log(time_period);
+
   //get top tracks for user
   const [topTracks, setTopTracks] = useState([]);
 
   useEffect(() => {
     const fetchTopTracks = async () => {
-      const tracks = await getTopTracks(accessToken);
+      const tracks = await getTopTracks(accessToken, time_period);
       setTopTracks(tracks);
-      console.log(tracks);
+      //console.log(tracks);
     };
 
     fetchTopTracks();
-  }, []);
+  }, [time_period]);
 
 
   //get top artists for user
@@ -42,13 +54,13 @@ function Home() {
 
   useEffect(() => {
     const fetchTopArtists = async () => {
-      const artists = await getTopArtists(accessToken);
+      const artists = await getTopArtists(accessToken, time_period);
       setTopArtists(artists);
       //console.log(artists);
     }
 
     fetchTopArtists();
-  }, []);
+  }, [time_period]);
 
   //get recommended tracks for user
   const [recommendedTracks, setRecommendedTracks] = useState([]);
@@ -57,13 +69,12 @@ function Home() {
     const fetchRecommendedTracks = async () => {
       const recTracks = await getRecommendedTracks(accessToken);
       setRecommendedTracks(recTracks);
-      console.log(recTracks);
     }
 
     fetchRecommendedTracks();
   }, []);
 
-  console.log(recommendedTracks);
+  //console.log(recommendedTracks);
   
   return (
     <div className="entire-background">
@@ -71,6 +82,30 @@ function Home() {
         <div className="App">
           <button id="logout" onClick={handleLogout}>Logout</button>
           <h1>Welcome {profileData.display_name}!</h1> 
+
+          <div className="time-period">
+              <button
+                    id="short-term"
+                    className={time_period === "short_term" ? "active" : ""}
+                    onClick={() => handleTimePeriodChange("short_term")}
+                >
+                    Short Term
+                </button>
+                <button
+                    id="medium-term"
+                    className={time_period === "medium_term" ? "active" : ""}
+                    onClick={() => handleTimePeriodChange("medium_term")}
+                >
+                    Medium Term
+                </button>
+                <button
+                    id="long-term"
+                    className={time_period === "long_term" ? "active" : ""}
+                    onClick={() => handleTimePeriodChange("long_term")}
+                >
+                    Long Term
+                </button>
+          </div>
                 
           <div className="artist-genre">
             <div className="top-artist">

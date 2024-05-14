@@ -52,3 +52,20 @@
     margin-right: 10px;
 }
 
+/*handle soundtrack styling*/
+.number .play-icon {
+    position: absolute;
+    font-size: 15px;
+    opacity: 0;
+    left: 120px;
+    margin-top: -18px;
+}
+
+.number:hover .play-icon {
+    opacity: 1; /* Show the icon when the .track-preview is hovered over */
+    cursor: pointer;
+}
+
+.number:hover p {
+    opacity: 0;
+}

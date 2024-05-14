@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import React from 'react';
 import './TrackPreview.css';
+import { Link } from 'react-router-dom';
 import { FaPlay, FaPause, FaVolumeUp } from "react-icons/fa";
 
 const TrackPreview = ({recTrack, trackId}) => {
@@ -71,7 +72,10 @@ const TrackPreview = ({recTrack, trackId}) => {
 
             <div className='track-artist'>
                 <p id="track-name">{recTrack.name}</p>
-                <p id="artist">{recTrack.artists[0].name}</p>
+                <Link to={`/artist/${recTrack.artists[0].id}`}>
+                    <p id="artist">{recTrack.artists[0].name}</p>
+                </Link>
+
                 {showSoundIcon && <FaVolumeUp className="sound" />}
             </div>
         </div>

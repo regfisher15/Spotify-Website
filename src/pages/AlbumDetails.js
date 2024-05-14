@@ -22,7 +22,9 @@ async function fetchAlbumDetails(id) {
     return albumData;
 }
 
+
 const AlbumDetails = () => {
+
     const { albumId } = useParams();
     const [theAlbum, setTheAlbum] = useState([]);
 
@@ -41,7 +43,6 @@ const AlbumDetails = () => {
         fetchAlbum();
     }, [albumId]);
 
-    console.log(theAlbum);
 
     return (
         <div className="background">
@@ -68,19 +69,20 @@ const AlbumDetails = () => {
                         <div className="songs-length">
                             <div className="songs">{ theAlbum.total_tracks } songs</div>
                             <p>,</p>
-                            <div className="lenth">Length</div>
+                            <div className="lenth">length</div>
                         </div>
                     </div>
                 )}
             </div>
             
             <div className="album-songs">
-            {theAlbum.tracks && theAlbum.tracks.items && theAlbum.tracks.items.length > 0 && (
-                theAlbum.tracks.items.map((track, index) => (
-                    <SongBar key={index} track={track} trackId={index} artist={theAlbum.artists[0].name}/>
-                ))
-            )}
+                {theAlbum.tracks && theAlbum.tracks.items && theAlbum.tracks.items.length > 0 && (
+                    theAlbum.tracks.items.map((track, index) => (
+                        <SongBar key={index} track={track} trackId={index} artist={theAlbum.artists[0].name}/>
+                    ))
+                )}
             </div>
+
         </div>
     );
 };
