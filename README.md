@@ -1,3 +1,7 @@
+# Spotify React App
+This is a spotify based web app that I created to get a user's top items from different time ranges on their spotify account. I chose to create this website using react.js to better understand the framework and to improve my programming skills. Unfortunately I could not host this website on the web due to Spotify's strict guidelines keeping it in development mode. You can still run the app locally, but you won't be able to authorize your own account due to the fact that I can only authorize 25 user accounts while in development mode. If you really want to see your data though, just let me know and I can add your account to the list of the 25 authorizable users! I will link a video soon in this repository to show all the features of my website :)  
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
