@@ -29,7 +29,7 @@ const getCodeChallenge = async () => {
 
 //declare variables for api calls
 const clientId = 'c584f1fbe1fe46e3ab8c424ca34b2504';
-const redirectUri = 'http://localhost:3000';
+const redirectUri = 'https://fabulous-naiad-0df3db.netlify.app';
 
 const scope = 'user-read-private user-read-email user-top-read';
 const authUrl = new URL("https://accounts.spotify.com/authorize");
