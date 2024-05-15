@@ -89,21 +89,21 @@ function Home() {
                     className={time_period === "short_term" ? "active" : ""}
                     onClick={() => handleTimePeriodChange("short_term")}
                 >
-                    Short Term
+                    Past 4 Weeks
                 </button>
                 <button
                     id="medium-term"
                     className={time_period === "medium_term" ? "active" : ""}
                     onClick={() => handleTimePeriodChange("medium_term")}
                 >
-                    Medium Term
+                    Past 6 Months
                 </button>
                 <button
                     id="long-term"
                     className={time_period === "long_term" ? "active" : ""}
                     onClick={() => handleTimePeriodChange("long_term")}
                 >
-                    Long Term
+                    1 year +
                 </button>
           </div>
                 
