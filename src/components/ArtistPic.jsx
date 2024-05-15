@@ -11,6 +11,8 @@ const ArtistPic = ({artist}) => {
         setSelectedArtist(artist);
     }
 
+    console.log(selectedArtist);
+
     return (
         <div className='artist'>
             <div className='pic'>
